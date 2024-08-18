@@ -7,6 +7,7 @@ import android.os.Build;
 import android.provider.Settings;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import org.apache.cordova.CordovaPlugin;
@@ -17,6 +18,7 @@ import org.json.JSONException;
 public class FloatingWidgetPlugin extends CordovaPlugin {
     private WindowManager windowManager;
     private View floatingView;
+    private WindowManager.LayoutParams params;
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -34,15 +36,14 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(cordova.getActivity())) {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + cordova.getActivity().getPackageName()));
             cordova.getActivity().startActivityForResult(intent, 0);
-            callbackContext.error("Overlay permission is required.");
+            callbackContext.error("Overlay permission is required. Please grant it in the settings.");
             return;
         }
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        // Use a valid resource ID, adjust if necessary
         floatingView = inflater.inflate(context.getResources().getIdentifier("floating_widget_layout", "layout", context.getPackageName()), null);
 
-        WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+        params = new WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.WRAP_CONTENT,
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY : WindowManager.LayoutParams.TYPE_PHONE,
@@ -54,6 +55,33 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
         params.y = 100;
 
         windowManager.addView(floatingView, params);
+
+        floatingView.setOnTouchListener(new View.OnTouchListener() {
+            private int xOffset;
+            private int yOffset;
+            private float xStart;
+            private float yStart;
+
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        xStart = event.getRawX();
+                        yStart = event.getRawY();
+                        xOffset = params.x;
+                        yOffset = params.y;
+                        return true;
+
+                    case MotionEvent.ACTION_MOVE:
+                        params.x = xOffset + (int) (event.getRawX() - xStart);
+                        params.y = yOffset + (int) (event.getRawY() - yStart);
+                        windowManager.updateViewLayout(floatingView, params);
+                        return true;
+                }
+                return false;
+            }
+        });
+
         callbackContext.success();
     }
 }
