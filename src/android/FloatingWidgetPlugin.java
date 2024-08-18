@@ -29,6 +29,9 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
         if (action.equals("showFloatingWidget")) {
             showFloatingWidget(callbackContext);
             return true;
+        } else if (action.equals("isWidgetDisplayed")) {
+            callbackContext.success(isWidgetDisplayed ? "true" : "false");
+            return true;
         }
         return false;
     }
