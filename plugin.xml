@@ -6,19 +6,13 @@
     <engine name="cordova" version=">=9.0.0" />
 
     <js-module src="www/FloatingWidgetPlugin.js" name="FloatingWidgetPlugin">
-        <clobbers target="FloatingWidgetPlugin" />
+        <clobbers target="cordova.plugins.FloatingWidgetPlugin" />
     </js-module>
 
     <platform name="android">
         <!-- Add necessary permissions -->
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-        </config-file>
-
-                <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="FloatingWidgetPlugin" >
-                <param name="android-package" value="com.example.floatingwidget"/>
-            </feature>
         </config-file>
 
         <!-- Java source file -->
