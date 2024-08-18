@@ -5,8 +5,8 @@
     <pluginId>cordova-plugin-floating-widget</pluginId>
     <engine name="cordova" version=">=9.0.0" />
 
-    <js-module src="www/FloatingWidgetPlugin.js" name="FloatingWidgetPlugin">
-        <clobbers target="cordova.plugins.FloatingWidgetPlugin" />
+<js-module src="www/FloatingWidgetPlugin.js" name="FloatingWidgetPlugin">
+        <clobbers target="window.FloatingWidgetPlugin" />
     </js-module>
 
     <platform name="android">
