@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin id="cordova-plugin-floating-widget" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0">
     <name>FloatingWidgetPlugin</name>
-    <description>A Cordova plugin for showing a floating widget.</description>
-    <pluginId>cordova-plugin-floating-widget</pluginId>
+    <description>Cordova Plugin to show a floating widget</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova, plugin, floating, widget</keywords>
     <engine name="cordova" version=">=9.0.0" />
 
 <js-module src="www/FloatingWidgetPlugin.js" name="FloatingWidgetPlugin">
