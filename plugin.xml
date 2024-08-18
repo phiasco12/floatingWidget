@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin id="cordova-plugin-floating-widget" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0">
     <name>FloatingWidgetPlugin</name>
+    <description>A Cordova plugin for showing a floating widget.</description>
+    <pluginId>cordova-plugin-floating-widget</pluginId>
+    <engine name="cordova" version=">=9.0.0" />
+
     <js-module src="www/FloatingWidgetPlugin.js" name="FloatingWidgetPlugin">
         <clobbers target="cordova.plugins.FloatingWidgetPlugin" />
     </js-module>
+
     <platform name="android">
         <!-- Add necessary permissions -->
-        <config-file target="AndroidManifest.xml" parent="/manifest">
+        <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
         </config-file>
+
         <!-- Java source file -->
         <source-file src="src/android/FloatingWidgetPlugin.java" target-dir="src/com/example/floatingwidget" />
-        <!-- Add resource files -->
-        <resource-file src="src/android/res/drawable/ic_launcher.png" target="res/drawable/ic_launcher.png" />
-        <resource-file src="src/android/res/layout/floating_widget_layout.xml" target="res/layout/floating_widget_layout.xml" />
+
+        <!-- Resource files -->
+        <resource-file src="src/android/res/drawable/ic_launcher.png" target="app/src/main/res/drawable/ic_launcher.png" />
+        <resource-file src="src/android/res/layout/floating_widget_layout.xml" target="app/src/main/res/layout/floating_widget_layout.xml" />
     </platform>
 </plugin>
