@@ -32,7 +32,6 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
         Context context = cordova.getActivity().getApplicationContext();
         windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 
-        // Check if the permission is granted
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(cordova.getActivity())) {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + cordova.getActivity().getPackageName()));
             cordova.getActivity().startActivityForResult(intent, 0);
