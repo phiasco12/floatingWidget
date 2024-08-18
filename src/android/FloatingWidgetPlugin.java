@@ -97,7 +97,7 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
         floatingView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("FloatingWidgetPlugin", "Floating widget clicked!");
+               
                 // Create an intent to open the main activity of the app
                 Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
                 if (launchIntent != null) {
