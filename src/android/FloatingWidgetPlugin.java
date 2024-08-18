@@ -130,7 +130,7 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "Floating widget clicked");
-                Toast.makeText(context, "Floating widget clicked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Floating widget clicked", Toast.LENGTH_SHORT).show();
 
                 // Create an intent to open the main activity of the app
                 Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
