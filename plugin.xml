@@ -1,0 +1,21 @@
+<plugin id="cordova-plugin-floating-widget" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0">
+    <name>FloatingWidgetPlugin</name>
+
+    <js-module src="www/FloatingWidgetPlugin.js" name="FloatingWidgetPlugin">
+        <clobbers target="cordova.plugins.FloatingWidgetPlugin" />
+    </js-module>
+
+    <platform name="android">
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+        </config-file>
+
+        <source-file src="src/android/FloatingWidgetPlugin.java" target-dir="src/com/example/floatingwidget" />
+        
+        <!-- Copy the layout XML file -->
+        <resource-file src="res/layout/floating_widget_layout.xml" target="res/layout/floating_widget_layout.xml" />
+
+        <!-- Copy the drawable resource -->
+        <resource-file src="res/drawable/ic_launcher.png" target="res/drawable/ic_launcher.png" />
+    </platform>
+</plugin>
