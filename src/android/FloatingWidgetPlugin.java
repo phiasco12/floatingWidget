@@ -32,6 +32,9 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
         } else if (action.equals("isWidgetDisplayed")) {
             callbackContext.success(isWidgetDisplayed ? "true" : "false");
             return true;
+        } else if (action.equals("destroyFloatingWidget")) {
+            destroyFloatingWidget(callbackContext);
+            return true;
         }
         return false;
     }
@@ -141,6 +144,17 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
         });
 
         callbackContext.success();
+    }
+
+    private void destroyFloatingWidget(CallbackContext callbackContext) {
+        if (floatingView != null) {
+            windowManager.removeView(floatingView);
+            floatingView = null;
+            isWidgetDisplayed = false; // Reset flag when widget is destroyed
+            callbackContext.success("Floating widget destroyed.");
+        } else {
+            callbackContext.error("No floating widget to destroy.");
+        }
     }
 
     @Override
