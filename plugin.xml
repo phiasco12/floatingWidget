@@ -12,7 +12,7 @@
         <!-- Java source file -->
         <source-file src="src/android/FloatingWidgetPlugin.java" target-dir="src/com/example/floatingwidget" />
         <!-- Add resource files -->
-        <resource-file src="src/android/res/drawable/ic_launcher.png" target="res/drawable/custom_icon.png" />
+        <resource-file src="src/android/res/drawable/ic_launcher.png" target="res/drawable/ic_launcher.png" />
         <resource-file src="src/android/res/layout/floating_widget_layout.xml" target="res/layout/floating_widget_layout.xml" />
     </platform>
 </plugin>
