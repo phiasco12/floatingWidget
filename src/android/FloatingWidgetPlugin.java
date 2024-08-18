@@ -103,7 +103,6 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
                 if (launchIntent != null) {
                     context.startActivity(launchIntent);
                 } else {
-                    Log.e("FloatingWidgetPlugin", "Unable to open the app.");
           
                     callbackContext.error("Unable to open the app.");
                 }
