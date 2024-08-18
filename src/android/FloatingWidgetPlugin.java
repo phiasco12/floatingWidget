@@ -11,8 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.util.Log;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -79,27 +77,36 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
             private int yOffset;
             private float xStart;
             private float yStart;
+            private static final int CLICK_THRESHOLD = 10;
 
             @Override
             public boolean onTouch(View view, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
+                        Log.d(TAG, "ACTION_DOWN detected");
                         xStart = event.getRawX();
                         yStart = event.getRawY();
                         xOffset = params.x;
                         yOffset = params.y;
-                        return true; // Indicate that we are handling this event
+                        return true;
 
                     case MotionEvent.ACTION_MOVE:
+                        Log.d(TAG, "ACTION_MOVE detected");
                         params.x = xOffset + (int) (event.getRawX() - xStart);
                         params.y = yOffset + (int) (event.getRawY() - yStart);
                         windowManager.updateViewLayout(floatingView, params);
-                        return true; // Indicate that we are handling this event
+                        return true;
 
                     case MotionEvent.ACTION_UP:
-                        return true; // Indicate that we are handling this event
+                        Log.d(TAG, "ACTION_UP detected");
+                        if (Math.abs(event.getRawX() - xStart) < CLICK_THRESHOLD &&
+                            Math.abs(event.getRawY() - yStart) < CLICK_THRESHOLD) {
+                            Log.d(TAG, "Click detected");
+                            floatingView.performClick();
+                        }
+                        return true;
                 }
-                return false; // Allow other views to handle the event
+                return false;
             }
         });
 
