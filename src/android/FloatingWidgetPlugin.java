@@ -36,7 +36,6 @@ private void showFloatingWidget(CallbackContext callbackContext) {
     Context context = cordova.getActivity().getApplicationContext();
     windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 
-    // Check for overlay permission
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(cordova.getActivity())) {
         Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + cordova.getActivity().getPackageName()));
         cordova.getActivity().startActivityForResult(intent, 0);
@@ -44,7 +43,6 @@ private void showFloatingWidget(CallbackContext callbackContext) {
         return;
     }
 
-    // Inflate the floating widget layout
     LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     int layoutId = context.getResources().getIdentifier("floating_widget_layout", "layout", context.getPackageName());
     if (layoutId == 0) {
@@ -54,7 +52,6 @@ private void showFloatingWidget(CallbackContext callbackContext) {
 
     floatingView = inflater.inflate(layoutId, null);
 
-    // Set up layout parameters for the floating widget
     params = new WindowManager.LayoutParams(
         WindowManager.LayoutParams.WRAP_CONTENT,
         WindowManager.LayoutParams.WRAP_CONTENT,
@@ -68,10 +65,8 @@ private void showFloatingWidget(CallbackContext callbackContext) {
     params.x = 0;
     params.y = 100;
 
-    // Add the view to the window
     windowManager.addView(floatingView, params);
 
-    // Make the floating widget draggable
     floatingView.setOnTouchListener(new View.OnTouchListener() {
         private int xOffset;
         private int yOffset;
@@ -93,31 +88,32 @@ private void showFloatingWidget(CallbackContext callbackContext) {
                     params.y = yOffset + (int) (event.getRawY() - yStart);
                     windowManager.updateViewLayout(floatingView, params);
                     return true;
+                    
+                case MotionEvent.ACTION_UP:
+                    return true;
             }
             return false;
         }
     });
 
-    // Set up OnClickListener to open the app
-floatingView.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Toast.makeText(context, "Floating widget clicked", Toast.LENGTH_SHORT).show();
-        Log.d("FloatingWidgetPlugin", "Floating widget clicked");
+    floatingView.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(context, "Floating widget clicked", Toast.LENGTH_SHORT).show();
+            Log.d("FloatingWidgetPlugin", "Floating widget clicked");
 
-        // Create an intent to open the main activity of the app
-        Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
-        if (launchIntent != null) {
-            context.startActivity(launchIntent);
-        } else {
-            Log.e("FloatingWidgetPlugin", "Unable to open the app.");
-            callbackContext.error("Unable to open the app.");
+            Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
+            if (launchIntent != null) {
+                context.startActivity(launchIntent);
+            } else {
+                Log.e("FloatingWidgetPlugin", "Unable to open the app.");
+                callbackContext.error("Unable to open the app.");
+            }
         }
-    }
-});
-
+    });
 
     callbackContext.success();
 }
+
 
 }
