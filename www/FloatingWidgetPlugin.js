@@ -1,8 +1,8 @@
 var exec = require('cordova/exec');
 
 var FloatingWidgetPlugin = {
-    showFloatingWidget: function (success, error) {
-        exec(success, error, "FloatingWidgetPlugin", "showFloatingWidget", []);
+    showFloatingWidget: function(successCallback, errorCallback) {
+        exec(successCallback, errorCallback, "FloatingWidgetPlugin", "showFloatingWidget", []);
     }
 };
 
