@@ -14,6 +14,7 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONException;
+import android.util.Log;
 
 public class FloatingWidgetPlugin extends CordovaPlugin {
     private WindowManager windowManager;
