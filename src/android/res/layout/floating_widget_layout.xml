@@ -3,9 +3,10 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:padding="10dp"
+    android:focusable="false"
     android:importantForAccessibility="no"
-    android:focusable="false">
-    
+    android:importantForAutofill="no">
+
     <!-- Example: Add an ImageView for the floating widget -->
     <ImageView
         android:id="@+id/floating_widget_image"
@@ -14,5 +15,3 @@
         android:src="@drawable/ic_launcher" />
 
 </RelativeLayout>
-
-
