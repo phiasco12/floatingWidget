@@ -30,7 +30,7 @@
         <!--<resource-file src="src/android/res/drawable/ic_launcher.png" target="app/src/main/res/drawable/ic_launcher.png" />
         <resource-file src="src/android/res/layout/floating_widget_layout.xml" target="app/src/main/res/layout/floating_widget_layout.xml" />-->
 
-         <resource-file src="src/android/res/drawable/ic_launcher.png" target="res/drawable/ic_launcher.png" />
-        <resource-file src="src/android/res/layout/floating_widget_layout.xml" target="res/layout/floating_widget_layout.xml" />
+         <!--<resource-file src="src/android/res/drawable/ic_launcher.png" target="res/drawable/ic_launcher.png" />
+        <resource-file src="src/android/res/layout/floating_widget_layout.xml" target="res/layout/floating_widget_layout.xml" />-->
     </platform>
 </plugin>
