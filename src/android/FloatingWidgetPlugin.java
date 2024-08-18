@@ -13,7 +13,6 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONException;
-import com.example.floatingwidget.R; // Ensure this matches your actual package name
 
 public class FloatingWidgetPlugin extends CordovaPlugin {
     private WindowManager windowManager;
@@ -40,7 +39,8 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
         }
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        floatingView = inflater.inflate(R.layout.floating_widget_layout, null);
+        // Use a valid resource ID, adjust if necessary
+        floatingView = inflater.inflate(context.getResources().getIdentifier("floating_widget_layout", "layout", context.getPackageName()), null);
 
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT,
