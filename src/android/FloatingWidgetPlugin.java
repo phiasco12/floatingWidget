@@ -22,6 +22,7 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
     private WindowManager windowManager;
     private View floatingView;
     private WindowManager.LayoutParams params;
+    private boolean isWidgetDisplayed = false; // Flag to check if widget is displayed
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -33,6 +34,11 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
     }
 
     private void showFloatingWidget(CallbackContext callbackContext) {
+        if (isWidgetDisplayed) {
+            callbackContext.success(); // Widget already displayed
+            return;
+        }
+
         Context context = cordova.getActivity().getApplicationContext();
         windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 
@@ -70,6 +76,9 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
 
         // Add the view to the window
         windowManager.addView(floatingView, params);
+
+        // Set flag to indicate that the widget is now displayed
+        isWidgetDisplayed = true;
 
         // Make the floating widget draggable
         floatingView.setOnTouchListener(new View.OnTouchListener() {
@@ -129,5 +138,15 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
         });
 
         callbackContext.success();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (floatingView != null) {
+            windowManager.removeView(floatingView);
+            floatingView = null;
+            isWidgetDisplayed = false; // Reset flag when plugin is destroyed
+        }
     }
 }
