@@ -7,8 +7,13 @@ var FloatingWidgetPlugin = {
 
     isWidgetDisplayed: function(successCallback, errorCallback) {
         exec(successCallback, errorCallback, "FloatingWidgetPlugin", "isWidgetDisplayed", []);
+    },
+
+    destroyFloatingWidget: function(successCallback, errorCallback) {
+        exec(successCallback, errorCallback, "FloatingWidgetPlugin", "destroyFloatingWidget", []);
     }
 };
 
 module.exports = FloatingWidgetPlugin;
+
 
