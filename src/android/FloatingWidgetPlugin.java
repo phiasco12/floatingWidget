@@ -94,18 +94,20 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
         });
 
         // Set up OnClickListener to open the app
-        floatingView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create an intent to open the main activity of the app
-                Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
-                if (launchIntent != null) {
-                    context.startActivity(launchIntent);
-                } else {
-                    callbackContext.error("Unable to open the app.");
-                }
-            }
-        });
+floatingView.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Log.d("FloatingWidgetPlugin", "Floating widget clicked!");
+        // Create an intent to open the main activity of the app
+        Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
+        if (launchIntent != null) {
+            context.startActivity(launchIntent);
+        } else {
+            Log.e("FloatingWidgetPlugin", "Unable to open the app.");
+            callbackContext.error("Unable to open the app.");
+        }
+    }
+});
 
         callbackContext.success();
     }
