@@ -1,11 +1,15 @@
-<activity
-    android:name=".MyCordovaActivity"
-    android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize"
-    android:launchMode="singleTop"
-    android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-    android:windowSoftInputMode="adjustResize">
-    <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.LAUNCHER" />
-    </intent-filter>
-</activity>
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <!-- Example: Add an ImageView for the floating widget -->
+    <ImageView
+        android:id="@+id/floating_widget_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/your_icon" />
+
+</RelativeLayout>
+
