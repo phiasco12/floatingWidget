@@ -33,6 +33,7 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
         Context context = cordova.getActivity().getApplicationContext();
         windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 
+        // Check for overlay permission
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(cordova.getActivity())) {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + cordova.getActivity().getPackageName()));
             cordova.getActivity().startActivityForResult(intent, 0);
@@ -40,9 +41,17 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
             return;
         }
 
+        // Inflate the floating widget layout
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        floatingView = inflater.inflate(context.getResources().getIdentifier("floating_widget_layout", "layout", context.getPackageName()), null);
+        int layoutId = context.getResources().getIdentifier("floating_widget_layout", "layout", context.getPackageName());
+        if (layoutId == 0) {
+            callbackContext.error("Floating widget layout not found.");
+            return;
+        }
 
+        floatingView = inflater.inflate(layoutId, null);
+
+        // Set up layout parameters for the floating widget
         params = new WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.WRAP_CONTENT,
@@ -54,8 +63,10 @@ public class FloatingWidgetPlugin extends CordovaPlugin {
         params.x = 0;
         params.y = 100;
 
+        // Add the view to the window
         windowManager.addView(floatingView, params);
 
+        // Make the floating widget draggable
         floatingView.setOnTouchListener(new View.OnTouchListener() {
             private int xOffset;
             private int yOffset;
