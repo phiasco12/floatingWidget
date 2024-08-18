@@ -16,6 +16,13 @@
             <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
         </config-file>
 
+
+                <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Device" >
+                <param name="android-package" value="com.example.floatingwidget.FloatingWidgetPlugin"/>
+            </feature>
+        </config-file>
+
         <!-- Java source file -->
         <source-file src="src/android/FloatingWidgetPlugin.java" target-dir="src/com/example/floatingwidget" />
 
