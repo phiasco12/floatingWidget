@@ -24,21 +24,23 @@
     android:importantForAccessibility="no"
     android:importantForAutofill="no">
 
-    <!-- Floating widget image -->
+    <!-- Example: Add an ImageView for the floating widget -->
     <ImageView
         android:id="@+id/floating_widget_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/o4" />
 
-    <!-- Close button -->
+    <!-- Close button inside a red circle -->
     <ImageView
         android:id="@+id/close_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:src="@drawable/ic_close_white"
+        android:background="@drawable/circle_red"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_margin="5dp"
         android:contentDescription="@string/close" />
 </RelativeLayout>
 
