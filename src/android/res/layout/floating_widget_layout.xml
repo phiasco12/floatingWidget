@@ -35,17 +35,12 @@
         android:id="@+id/red_circle"
         android:layout_width="20px"
         android:layout_height="20px"
-        android:background="@android:color/holo_red_dark"
+        android:background="#FF0000"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="4dp"
         android:layout_marginTop="4dp"
-        android:backgroundTint="#FF0000"
         android:clipToOutline="true"
-        android:elevation="4dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="4dp"/>
+        android:elevation="4dp" />
 
 </RelativeLayout>
-
