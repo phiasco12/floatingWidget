@@ -1,3 +1,20 @@
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:padding="10dp"
+    android:focusable="false"
+    android:importantForAccessibility="no"
+    android:importantForAutofill="no">
+
+
+    <ImageView
+        android:id="@+id/floating_widget_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/o4" />
+
+</RelativeLayout>-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -7,11 +24,22 @@
     android:importantForAccessibility="no"
     android:importantForAutofill="no">
 
-    <!-- Example: Add an ImageView for the floating widget -->
+    <!-- Floating widget image -->
     <ImageView
         android:id="@+id/floating_widget_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/o4" />
 
+    <!-- Close button -->
+    <ImageView
+        android:id="@+id/close_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_close_white"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/close" />
 </RelativeLayout>
+
+
