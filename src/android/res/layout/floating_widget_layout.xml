@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:clickable="true"
@@ -13,5 +13,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/o4" />
+
+</RelativeLayout>-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:padding="10dp"
+    android:focusable="false"
+    android:importantForAccessibility="no"
+    android:importantForAutofill="no">
+
+    <ImageView
+        android:id="@+id/floating_widget_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/o4" />
+
+    <!-- Red circle in the top right corner -->
+    <View
+        android:id="@+id/red_circle"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:background="@drawable/red_circle_background"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="4dp" />
 
 </RelativeLayout>
